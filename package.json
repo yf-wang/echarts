@@ -1,0 +1,28 @@
+{
+  "name": "echarts",
+  "version": "1.0.0",
+  "description": "echarts",
+  "scripts": {
+    "validate_filename": "node validate_filename.js `git diff --staged --name-only`",
+    "eslint": "files=`git diff --staged --name-only | egrep '\\.js$'`; if [ \"${files:=empty}\" != \"empty\" ]; then eslint -c .eslintrc.json $files; fi",
+    "build": "node ./node_modules/requirejs/bin/r.js -o build.js"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run validate_filename && npm run eslint"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.tcredit.com/f2e/echarts.git"
+  },
+  "keywords": [],
+  "author": "f2e",
+  "devDependencies": {
+    "colors": "^1.1.2",
+    "ghooks": "^1.0.3"
+  },
+  "dependencies": {
+    "requirejs": "^2.2.0"
+  }
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>折线图</title>
+</head>
+<body>
+
+<div id="graph" style="width:500px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+
+<script src="js/config.js" _inline _compress></script>
+<script src="js/lib/require.js"></script>
+<script>
+    require(['line'], function(module) {
+        module.line();
+    });
+</script>
+</body>
+</html>
