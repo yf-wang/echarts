@@ -1,4 +1,4 @@
-# api
+# echarts
 
 ## 安装
 
