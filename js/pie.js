@@ -1,4 +1,5 @@
 define(function(require) {
+    var common = require('common');
     var $ = require('jquery');
     var echarts = require('echarts');
 
@@ -30,7 +31,7 @@ define(function(require) {
                     }
                 },
             }],
-            color: color
+            color: common.color
         };
 
         var chart = echarts.init(document.querySelector(elem));
