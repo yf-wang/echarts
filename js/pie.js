@@ -1,21 +1,17 @@
 define(function(require) {
+    var $ = require('jquery');
     var echarts = require('echarts');
 
-    var pie = function() {
+    var pie = function(elem, options) {
         var option = {
-            //tooltip: {show: false},
             legend: {
                 orient: 'vertical',
-                left: 200,
+                itemWidth: 10,
+                itemHeight: 10,
                 itemGap: 1,
-                data: ['农资经销商', '种植户', '养殖户', '种植兼养殖户']
-                //data: categoryData
             },
             series: [{
-                name: '经营类别',
                 type: 'pie',
-                radius: ['50%', '70%'],
-                center: ['42%', '60%'],
                 avoidLabelOverlap: false,
                 label: {
                     normal: {
@@ -33,19 +29,12 @@ define(function(require) {
                         show: false
                     }
                 },
-                //data: dataData
-                data: [
-                   {value: 335, name: '农资经销商'},
-                   {value: 310, name: '种植户'},
-                   {value: 234, name: '养殖户'},
-                   {value: 135, name: '种植兼养殖户'}
-                ]
             }],
-            color: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf']
+            color: color
         };
 
-        var chart = echarts.init(document.getElementById('graph'));
-        chart.setOption(option);
+        var chart = echarts.init(document.querySelector(elem));
+        chart.setOption($.extend(true, option, options));
     };
     return{
         pie: pie
