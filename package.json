@@ -4,8 +4,7 @@
   "description": "echarts",
   "scripts": {
     "validate_filename": "node validate_filename.js `git diff --staged --name-only`",
-    "eslint": "files=`git diff --staged --name-only | egrep '\\.js$'`; if [ \"${files:=empty}\" != \"empty\" ]; then eslint -c .eslintrc.json $files; fi",
-    "build": "node ./node_modules/requirejs/bin/r.js -o build.js"
+    "eslint": "files=`git diff --staged --name-only | egrep '\\.js$'`; if [ \"${files:=empty}\" != \"empty\" ]; then eslint -c .eslintrc.json $files; fi"
   },
   "config": {
     "ghooks": {

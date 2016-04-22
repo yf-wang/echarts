@@ -22,7 +22,7 @@ define(function(require) {
                     emphasis: {
                         show: true,
                         formatter: '{d}%\n{b}',
-                        textStyle: {fontSize: '15'}
+                        textStyle: {fontSize: 15}
                     }
                 },
                 labelLine: {
@@ -34,7 +34,7 @@ define(function(require) {
             color: common.color
         };
 
-        var chart = echarts.init(document.querySelector(elem));
+        var chart = echarts.init($(elem)[0]);
         chart.setOption($.extend(true, option, options));
     };
     return{

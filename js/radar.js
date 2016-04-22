@@ -32,7 +32,7 @@ define(function(require) {
             }]
         };
 
-        var chart = echarts.init(document.querySelector(elem));
+        var chart = echarts.init($(elem)[0]);
         chart.setOption($.extend(true, option, options));
     };
     return{
