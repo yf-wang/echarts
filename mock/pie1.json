@@ -1,0 +1,20 @@
+{
+    "data": {
+        "list": [
+            {
+                "name": "正面",
+                "value": 87
+            },
+            {
+                "name": "负面",
+                "value": 7
+            },
+            {
+                "name": "其他",
+                "value": 7
+            }
+        ]
+    },
+    "message": "操作成功",
+    "status": 0
+}

@@ -1,5 +1,5 @@
 define(function(require) {
-    var color = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'];
+    var color = ['#FF7200', '#FEB760', '#F8E71C', '#51CEFF', '#9BBDDD', '#82C1FF', '#B8E986', '#8DD06C', '#7ED321', '#9A9792'];
     return{
         color: color
     };

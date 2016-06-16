@@ -6,32 +6,37 @@
 </head>
 <body>
 
-<div id="graph" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<div id="graph_pie" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<div id="graph_pie1" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
 
 #parse("inc/foot_static.html")
 
 <script>
 require(['common'], function() {
-    require(['pie'], function(module) {
+    require(['pie', 'urlmap'], function(pie, urlmap) {
+        pie.pie(urlmap['pie'], '#graph_pie');
+
         var options = {
-            legend: {
-                left: 210,
-                data: ['农资经销商', '种植户', '养殖户', '种植兼养殖户']
+            tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                    return params.name + ': '+ params.value +' (' + Math.round(params.percent) + '%)';
+                }
             },
             series: [{
-                name: '经营类别',
-                radius: ['50%', '70%'],
-                center: ['42%', '60%'],
-                data: [
-                   {value: 335, name: '农资经销商'},
-                   {value: 310, name: '种植户'},
-                   {value: 234, name: '养殖户'},
-                   {value: 135, name: '种植兼养殖户'}
-                ]
+                type: 'pie',
+                radius: ['35%', '75%'],
+                center: ['55%', '50%'],
+                label: {
+                    normal: {
+                        formatter: function (params) {
+                            return Math.round(params.percent) + '%';
+                        }
+                    }
+                }
             }]
         };
-        
-        module.pie('#graph', options);
+        pie.pie(urlmap['pie1'], '#graph_pie1', options);
     });
 });
 </script>

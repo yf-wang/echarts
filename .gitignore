@@ -34,4 +34,8 @@ local.json
 nohup.out
 build
 dist
+.sass-cache
+.project
+.idea
+*.iml
 test.html

@@ -6,27 +6,31 @@
 </head>
 <body>
 
-<div id="graph" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<div id="graph_bar" style="width:1000px; height:350px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<div id="graph_bar_line" style="width:1000px; height:350px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
 
 #parse("inc/foot_static.html")
 
 <script>
 require(['common'], function() {
-    require(['bar'], function(module) {
+    require(['bar', 'urlmap'], function(bar, urlmap) {
+        bar.bar(urlmap['bar'], '#graph_bar');
         var options = {
-            tooltip: {
-                formatter: '{b}<br/>新增客户:{c}个'
-            },
-            xAxis: {
-                data: ['2015/12', '2015/11', '2015/10', '2015/09', '2015/08', '2015/07', '2015/06', '2015/05', '2015/04', '2015/03', '2015/02', '2015/01']
-            },
-            series: [{
-                name: '新增客户',
-                data: [65, 56, 16, 11, 17, 9000, 66, 50, 30, 0, 21, 11]
-            }]
+            yAxis: [
+                {
+                    type: 'value'
+                },
+                {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value}%'
+                    },
+                    splitLine: {show: false}
+                }
+            ],
+            grid: {x: 70, y: 35, x2: 50, y2: 35},
         };
-        
-        module.bar('#graph', options);
+        bar.bar(urlmap['bar_line'], '#graph_bar_line', options);
     });
 });
 </script>
