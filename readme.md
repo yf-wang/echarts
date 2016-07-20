@@ -3,7 +3,6 @@
 ## 安装
 
 ```
-npm install -g eslint
 npm install
 ```
 

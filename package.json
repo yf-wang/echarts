@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "echarts",
   "scripts": {
-    "validate_filename": "node validate_filename.js `git diff --staged --name-only`",
+    "preinstall": "npm install -g eslint",
+    "validate_filename": "node node_modules/validate_filename/index.js -e '^[a-z0-9\\-_./]+$' -m '约定文件名由小写字母、数字、_组成' `git diff --staged --name-only --diff-filter=ACMRTU`",
     "eslint": "files=`git diff --staged --name-only | egrep '\\.js$'`; if [ \"${files:=empty}\" != \"empty\" ]; then eslint -c .eslintrc.json $files; fi"
   },
   "config": {
@@ -22,6 +23,7 @@
     "ghooks": "^1.0.3"
   },
   "dependencies": {
-    "requirejs": "^2.2.0"
+    "requirejs": "^2.2.0",
+    "validate_filename": "^0.2.1"
   }
 }
