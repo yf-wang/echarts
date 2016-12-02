@@ -10,11 +10,20 @@ define(function (require) {
                 return;
             }
             var option = {
-                tooltip : {
+                legend: {
+                    orient: 'vertical',
+                    right: 20,
+                    top: 10,
+                    itemWidth: 10,
+                    itemHeight: 10,
+                    itemGap: 1,
+                    data: data.data.list
+                },
+                tooltip: {
                     trigger: 'item',
                     formatter: "{b} : {c} ({d}%)"
                 },
-                series : [{
+                series: [{
                     type: 'pie',
                     radius : '68%',
                     center: ['50%', '48%'],

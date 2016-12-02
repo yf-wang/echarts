@@ -6,17 +6,23 @@
 </head>
 <body>
 
-<div id="graph_pie" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
 <div id="graph_pie1" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<div id="graph_pie2" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<div id="graph_pie3" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
 
 #parse("inc/foot_static.html")
 
 <script>
 require(['common'], function() {
     require(['pie', 'urlmap'], function(pie, urlmap) {
-        pie.pie(urlmap['pie'], '#graph_pie');
+        var options1 = {
+            legend: {
+                show: false
+            }
+        };
+        pie.pie(urlmap['pie'], '#graph_pie1', options1);
 
-        var options = {
+        var options2 = {
             tooltip: {
                 trigger: 'item',
                 formatter: function (params) {
@@ -24,9 +30,8 @@ require(['common'], function() {
                 }
             },
             series: [{
-                type: 'pie',
-                radius: ['35%', '75%'],
-                center: ['55%', '50%'],
+                radius: ['35%', '70%'],
+                center: ['50%', '55%'],
                 label: {
                     normal: {
                         formatter: function (params) {
@@ -36,7 +41,32 @@ require(['common'], function() {
                 }
             }]
         };
-        pie.pie(urlmap['pie1'], '#graph_pie1', options);
+        pie.pie(urlmap['pie1'], '#graph_pie2', options2);
+
+        var options3 = {          
+            series: [{
+                radius : ['40%', '68%'],
+                center: ['50%', '55%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{d}%\n{b}',
+                        textStyle: {fontSize: 15}
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+            }]
+        };
+        pie.pie(urlmap['pie1'], '#graph_pie3', options3);
     });
 });
 </script>
