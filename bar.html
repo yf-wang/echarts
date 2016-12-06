@@ -3,34 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>柱状图</title>
+<style>
+.wrapper {
+    width: 1000px; 
+    height: 350px; 
+    border: 5px solid #f1f1f1; 
+    margin: 20px auto;
+}
+</style>
 </head>
-<body>
 
-<div id="graph_bar" style="width:1000px; height:350px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
-<div id="graph_bar_line" style="width:1000px; height:350px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<body>
+<div id="graph_bar" class="wrapper"></div>
+<div id="graph_bar_line" class="wrapper"></div>
 
 #parse("inc/foot_static.html")
-
 <script>
 require(['common'], function() {
-    require(['bar', 'urlmap'], function(bar, urlmap) {
-        bar.bar(urlmap['bar'], '#graph_bar');
-        var options = {
-            yAxis: [
-                {
-                    type: 'value'
-                },
-                {
-                    type: 'value',
-                    axisLabel: {
-                        formatter: '{value}%'
-                    },
-                    splitLine: {show: false}
-                }
-            ],
-            grid: {x: 70, y: 35, x2: 50, y2: 35},
-        };
-        bar.bar(urlmap['bar_line'], '#graph_bar_line', options);
+    require(['bar'], function(module) {
+        module.init();
     });
 });
 </script>

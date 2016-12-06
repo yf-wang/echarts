@@ -2,55 +2,56 @@ define(function (require) {
     var common = require('common');
     var $ = require('jquery');
     var echarts = require('echarts');
+    var chart = require('chart');
     var urlmap = require('urlmap');
 
-    var bar = function(url, elem, options){
-        var promise = $.getJSON(url, function (data) {
-            if (data.status !== 0) {
-                return;
+    function init() {
+        var options1 = {
+            xAxis: {
+                name: '月',
+                axisLabel: {
+                    show: false
+                }
+            },
+            yAxis: {
+                name: '订单总额',
             }
-
-            var rstArr = data.data.list;
-            var typeBar = {
-                type: 'bar'
-            };
-            var typeLine = {
-                type: 'line',
-                yAxisIndex: 1
-            };
-            var option = {
-                tooltip: {
-                    trigger: 'axis'
-                },
-                xAxis: {
-                    type: 'category',
-                    data: data.data.month || [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                    splitLine: {show: false}
-                },
-                yAxis: {
+        };
+        chart.bar(urlmap['bar'], '#graph_bar', options1);
+        
+        var options2 = {
+            yAxis: [
+                { 
                     type: 'value'
                 },
-                series: rstArr = $.map(rstArr, function (item, i) {
-                    if(item.name == '环比增长率' || item.name == '同比增长率') {
-                        return $.extend(true, item, typeLine);
-                    } else {
-                        return $.extend(true, item, typeBar);
+                {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value}%'
+                    },
+                    splitLine: {show: false}
+                }
+            ],
+            series: [{
+                type: 'bar',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
                     }
-                }),
-                grid: {x: 70, y: 35, x2: 35, y2: 35},
-                backgroundColor: '#F9F9F9',
-                color: common.color
-            };
-            
-            var chart = echarts.init($(elem)[0]);
-            chart.setOption($.extend(true, option, options));
-        });
-        promise.fail(function () {
-            $(elem).html('系统异常');
-        });
-    };
+                },
+                /*itemStyle: {
+                    normal: {
+                        color: '#4B9AEB'
+                    }
+                }*/
+            }],
+            grid: {x: 70, y: 35, x2: 50, y2: 35}
+        };
+        chart.bar(urlmap['bar_line'], '#graph_bar_line', options2);
+    }
 
     return {
-        bar : bar
+        init: init
     };
 });

@@ -3,29 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>折线图</title>
+<style>
+.wrapper {
+    width: 1000px; 
+    height: 350px; 
+    border: 5px solid #f1f1f1; 
+    margin: 20px auto;
+}
+</style>
 </head>
+
 <body>
-
-
-<div id="graph_line" style="width:1000px; height:350px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
-<div id="graph_line1" style="width:1000px; height:350px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<div id="graph_line1" class="wrapper"></div>
+<div id="graph_line2" class="wrapper"></div>
 
 #parse("inc/foot_static.html")
-
 <script>
 require(['common'], function() {
-    require(['line', 'urlmap'], function(line, urlmap) {
-        line.line(urlmap['line'], '#graph_line');
-
-        var setting = {
-            areaStyle: {
-                normal: {
-                    color: '#FF8A8A',
-                    opacity: 0.1
-                }
-            }
-        };
-        line.line(urlmap['line1'], '#graph_line1', '', setting);
+    require(['line'], function(module) {
+        module.init();
     });
 });
 </script>

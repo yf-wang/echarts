@@ -3,70 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <title>饼图</title>
+<style>
+ul {
+    width: 800px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+}
+ul:after {
+    content: ".";
+    display: block; 
+    clear: both; 
+    height: 0; 
+    font-size: 0; 
+    visibility: hidden;
+}
+ul li {
+    float: left;
+    width: 350px; 
+    height: 320px; 
+    border: 5px solid #f1f1f1; 
+    margin: 20px;
+}
+</style>
 </head>
-<body>
 
-<div id="graph_pie1" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
-<div id="graph_pie2" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
-<div id="graph_pie3" style="width:350px; height:320px; border:5px solid #f1f1f1; margin: 40px auto;"></div>
+<body>
+<ul>
+    <li id="graph_pie1"></li>
+    <li id="graph_pie2"></li>
+    <li id="graph_pie3"></li>
+    <li id="graph_pie4"></li>  
+</ul>
 
 #parse("inc/foot_static.html")
-
 <script>
 require(['common'], function() {
-    require(['pie', 'urlmap'], function(pie, urlmap) {
-        var options1 = {
-            legend: {
-                show: false
-            }
-        };
-        pie.pie(urlmap['pie'], '#graph_pie1', options1);
-
-        var options2 = {
-            tooltip: {
-                trigger: 'item',
-                formatter: function (params) {
-                    return params.name + ': '+ params.value +' (' + Math.round(params.percent) + '%)';
-                }
-            },
-            series: [{
-                radius: ['35%', '70%'],
-                center: ['50%', '55%'],
-                label: {
-                    normal: {
-                        formatter: function (params) {
-                            return Math.round(params.percent) + '%';
-                        }
-                    }
-                }
-            }]
-        };
-        pie.pie(urlmap['pie1'], '#graph_pie2', options2);
-
-        var options3 = {          
-            series: [{
-                radius : ['40%', '68%'],
-                center: ['50%', '55%'],
-                avoidLabelOverlap: false,
-                label: {
-                    normal: {
-                        show: false,
-                        position: 'center'
-                    },
-                    emphasis: {
-                        show: true,
-                        formatter: '{d}%\n{b}',
-                        textStyle: {fontSize: 15}
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-            }]
-        };
-        pie.pie(urlmap['pie1'], '#graph_pie3', options3);
+    require(['pie'], function(module) {
+        module.init();
     });
 });
 </script>
